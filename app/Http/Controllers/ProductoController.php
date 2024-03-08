@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create']);   
+    }
     /**
      * Display a listing of the resource.
      */
@@ -23,29 +28,9 @@ class ProductoController extends Controller
      */
     public function create()
     {                       //Request $request
-        //if($request->user == 'luis' && $request->contrasena == '123')
-        //{
-            //return view('producto.createProducto');
-        //}
-        //else
-        //{
-        return view('login');
-        //}
-    }
 
-   public function cargar(Request $request)
-    {
-        //dd($request);
-        if($request->user == 'luis' && $request->contrasena == '123')
-        {
             return view('producto.createProducto');
-        }
-        else
-        {
-            return view('login');
-        }
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -58,7 +43,7 @@ class ProductoController extends Controller
             'descripcion' => ['required', 'string', 'min:10'],
             'imagen'=> ['required','file','mimes:jpg,png']
         ]);
-        
+        #Producto::created($request->all());
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->categoria = $request->categoria;

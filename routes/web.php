@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,14 @@ Route::get('/', function () {
 //Route::match(['get', 'post'], '/cargar', [ProductoController::class, 'cargar'])->name('cargar');
 
 Route::resource('producto', ProductoController::class);
+#->middleware('auth'); forma de poner un middleware a todo con controlador
 
-Route::match(['get', 'post'], '/cargar', [ProductoController::class, 'cargar'])->name('cargar');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

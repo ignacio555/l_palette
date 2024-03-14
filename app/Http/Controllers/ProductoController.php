@@ -27,9 +27,9 @@ class ProductoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {                       //Request $request
+    {                     
 
-            return view('producto.createProducto');
+        return view('producto.createProducto');
     }
 
     /**

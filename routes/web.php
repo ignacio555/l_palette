@@ -20,6 +20,10 @@ Route::get('/', function () {
 });
 //Route::match(['get', 'post'], '/cargar', [ProductoController::class, 'cargar'])->name('cargar');
 
+Route::get('palette', function(){
+    return view('index_palette');
+});
+
 Route::resource('producto', ProductoController::class);
 #->middleware('auth'); forma de poner un middleware a todo con controlador
 

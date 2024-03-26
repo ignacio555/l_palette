@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,8 @@ Route::get('palette', function(){
 
 Route::resource('producto', ProductoController::class);
 #->middleware('auth'); forma de poner un middleware a todo con controlador
+
+Route::resource('categoria', CategoriaController::class)->parameters(['categoria' => 'categoria']);;
 
 Route::middleware([
     'auth:sanctum',

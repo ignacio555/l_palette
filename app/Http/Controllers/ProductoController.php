@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Storage;
 class ProductoController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth')->only(['create']);   
-    }
+  #  public function __construct()
+   # {
+    #    $this->middleware('auth')->only(['create']);   
+    #}
+    
     /**
      * Display a listing of the resource.
      */

@@ -18,15 +18,25 @@
                 <div class="col-xl-6 form-group">
                 <input type="text" name="nombre" id="nombre" class="form-control" placeholder="nombre de imagen" value="{{old('nombre')}}" required>
                 </div>
-                <div class="col-xl-6 form-group">
+                <!--<div class="col-xl-6 form-group">
                 <input type="text" name="categoria" class="form-control" placeholder="categoria" value="{{old('categoria')}}" required>
+                </div>-->
+                <div>
+                <select class="form-control" name="categoria_id">
+                @foreach ( $categorias as $categoria)
+                    <option value="{{$categoria->id}}">{{$categoria->dato}}</option>
+                @endforeach
+                </select>
                 </div>
             </div>
             <div class="form-group">
                 <input type="file" class="form-control" name="imagen">
             </div>
+            <div>
+                <input type="number" class="form-control" name="precio"  step="0.01" placeholder="Precio" value="{{old('precio')}}" min="1" required>
+            </div>
             <div class="form-group">
-                <textarea class="form-control" name="descripcion" id="descripcion" required> {{old('descripcion')}}</textarea>
+                <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripcion" required> {{old('descripcion')}}</textarea>
             </div>
             <div class="text-center"><button type="submit">Enviar</button></div>
             <div class="my-3">

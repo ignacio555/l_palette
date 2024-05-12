@@ -18,7 +18,7 @@
                 @foreach ( $productos as $producto )
                     <tr class="informacion">
                         <td>{{$producto->nombre}}</td>
-                        <td>{{$producto->categoria}}</td>
+                        <td>{{$producto->categorias->first()->dato}}</td>
                         <td>{{$producto->descripcion}}</td>
                         <td><img src="{{asset('storage/' . $producto->url)}}" class="img_index"alt="img"></td>
                         <td>

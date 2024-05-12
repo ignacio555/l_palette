@@ -9,7 +9,8 @@
               <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
               <h2 data-aos="fade-up">Informacion del producto</h2>
                         <p data-aos="fade-up"><br>Nombre:{{$producto->nombre}}</p>
-                        <p data-aos="fade-up">Categoria:{{$producto->categoria}}</p>
+                        <p data-aos="fade-up">Precio:{{$producto->precio}}</p>
+                        <p data-aos="fade-up">Categoria:{{$producto->categorias->first()->dato}}</p>
                         <p data-aos="fade-up">Descripcion:{{$producto->descripcion}}</p>
                         <p data-aos="fade-up">Fecha de creacion:{{$producto->created_at}}</p>
               </div>

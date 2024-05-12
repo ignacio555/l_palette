@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CategoriaController extends Controller
 {
@@ -12,6 +14,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
+        if (!Gate::allows('rol', Auth::user())) {
+            abort(404);
+        }   
         $categorias = Categoria::all();
         return view('categorias.indexCategoria', compact('categorias'));
         //
@@ -22,6 +27,9 @@ class CategoriaController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('rol', Auth::user())) {
+            abort(404);
+        }   
         return view('categorias.createCategoria');
     }
 
@@ -30,9 +38,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('rol', Auth::user())) {
+            abort(404);
+        }   
         $request->validate(
             [
-                'dato' => ['required', 'string', 'max:10']
+                'dato' => ['required', 'string', 'regex:/^[a-zA-Z]+$/', 'max:10']
             ]
             );
 
@@ -47,8 +58,11 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        
-        //
+        if (!Gate::allows('rol', Auth::user())) {
+            abort(404);
+        }   
+        $productos = $categoria->productos()->get();
+        return view('categorias.showCategorias',compact('categoria', 'productos'));
     }
 
     /**
@@ -56,6 +70,9 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
+        if (!Gate::allows('rol', Auth::user())) {
+            abort(404);
+        }   
         return view('categorias.editCategoria', compact('categoria'));
         //
     }
@@ -65,7 +82,18 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        if (!Gate::allows('rol', Auth::user())) {
+            abort(404);
+        }   
+        $request->validate(
+            [
+                'dato' => ['required', 'string', 'regex:/^[a-zA-Z]+$/', 'max:10']
+            ]
+        );
+        $categoria-> dato = $request->dato;
+        $categoria->save();
+        return redirect()->route('categoria.index');
+        
     }
 
     /**
@@ -73,7 +101,11 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
+        if (!Gate::allows('rol', Auth::user())) {
+            abort(404);
+        }   
         #dd($categoria);
+        $categoria->productos()->delete();
         $categoria->delete();
         return redirect()->route('categoria.index');
     }

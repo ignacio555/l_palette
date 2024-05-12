@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             #$table->string('categoria');
+            $table->float('precio');
             $table->text('descripcion');
             $table->string('url');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

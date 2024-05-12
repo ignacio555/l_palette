@@ -44,13 +44,13 @@
     <header id="book-a-table" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <a href="{{route('principal')}}" class="logo d-flex align-items-center me-auto me-lg-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1>L_palette</h1>
         </a>
         <x-navegacionProducto/>
-        <a class="btn-book-a-table" href="#hero">Inicio</a>
+        <a class="btn-book-a-table" href="{{route('principal')}}">Inicio</a>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 

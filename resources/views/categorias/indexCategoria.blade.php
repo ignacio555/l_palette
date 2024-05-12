@@ -4,21 +4,26 @@
         {{ session('error') }}
     </div>
     @endif
-    <table>
+    <table class="contenedor_tabla text-center">
         <thead>
-            <th>Categoria</th>
-            <th>Opciones</th>
+            <tr class="tabla_titulos">
+                <th>Categoria</th>
+                <th>Opciones</th>
+            </tr>
         </thead>
         <tbody>
             @foreach ($categorias as $categoria )
-                <tr>
+                <tr class="informacion">
                     <td>{{$categoria->dato}}</td>
                     <td>
-                        <a href="{{route('categoria.edit', $categoria)}}">Editar</a>
+                        <div class="row">
+                            <a href="{{route('categoria.edit', $categoria)}}">Editar</a>
+                            <a href="{{route('categoria.show', $categoria)}}">ver</a>
+                        </div>
                         <form method="POST" action="{{route('categoria.destroy', $categoria)}}">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Eliminar">
+                            <input type="submit" class="btn btn-danger" value="eliminar">
                         </form>
                     </td>
                 </tr>
